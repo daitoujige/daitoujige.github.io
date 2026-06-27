@@ -58,7 +58,6 @@
             flex-wrap: wrap;
         }
 
-        /* 标题组独占宽度 */
         .title-group {
             flex: 1;
         }
@@ -81,7 +80,7 @@
             font-weight: 400;
             font-size: 1.2rem;
             color: #7a6a5a;
-            -webkit-text-fill-color: #7a6a5a; /* 覆盖渐变，单独着色 */
+            -webkit-text-fill-color: #7a6a5a;
             background: none;
         }
 
@@ -179,6 +178,7 @@
             transform: scale(1.05);
         }
 
+        /* 各平台图标配色 */
         .icon-douyin {
             background: linear-gradient(135deg, #000000, #1a1a1a);
         }
@@ -188,11 +188,18 @@
         .icon-qq {
             background: linear-gradient(135deg, #2b82d9, #1a6bc4);
         }
+        /* 洛谷改为绿色渐变 + 奖杯图标 */
+        .icon-luogu {
+            background: linear-gradient(135deg, #2e8b57, #1f6d3a);
+        }
+        .icon-hydro {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+        }
         .icon-github {
             background: linear-gradient(135deg, #24292e, #0d1117);
         }
         .icon-aiyou {
-            background: linear-gradient(135deg, #e4405f, #d62b4e);
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
         }
 
         .link-card .link-text {
@@ -405,7 +412,7 @@
 
     <div class="profile-card">
 
-        <!-- ===== 头部（已移除头像） ===== -->
+        <!-- ===== 头部 ===== -->
         <div class="header">
             <div class="title-group">
                 <h1>
@@ -447,7 +454,7 @@
                 </span>
             </a>
 
-            <!-- QQ 单独展示（无链接） -->
+            <!-- QQ 展示（无链接） -->
             <div class="link-card" style="cursor: default; background: rgba(255,248,235,0.4);">
                 <span class="icon-wrap icon-qq"><i class="fab fa-qq"></i></span>
                 <span class="link-text">
@@ -455,6 +462,24 @@
                     <span class="hint"><i class="fas fa-phone"></i> 3665610192</span>
                 </span>
             </div>
+
+            <!-- 洛谷：改用奖杯图标 + 绿色背景 -->
+            <a href="https://www.luogu.com.cn/team/106372/member" target="_blank" class="link-card">
+                <span class="icon-wrap icon-luogu"><i class="fas fa-trophy"></i></span>
+                <span class="link-text">
+                    <span class="label">洛谷 · 团队</span>
+                    <span class="hint"><i class="fas fa-arrow-right"></i> 算法竞赛</span>
+                </span>
+            </a>
+
+            <!-- Hydro -->
+            <a href="https://hydro.ac/" target="_blank" class="link-card">
+                <span class="icon-wrap icon-hydro"><i class="fas fa-droplet"></i></span>
+                <span class="link-text">
+                    <span class="label">Hydro</span>
+                    <span class="hint"><i class="fas fa-arrow-right"></i> 在线评测平台</span>
+                </span>
+            </a>
         </div>
 
         <!-- QQ 数字醒目展示（额外） -->
@@ -473,11 +498,21 @@
             </div>
 
             <div class="friends-grid">
-                <a href="https://github.com/pztsdy" target="_blank" class="friend-item">
-                    <i class="fab fa-github"></i>
+                <!-- piaoztsdy：改为博客链接 -->
+                <a href="https://www.piaoztsdy.cn/" target="_blank" class="friend-item">
+                    <i class="fas fa-blog"></i>
                     <span>piaoztsdy</span>
-                    <span class="badge">GitHub</span>
+                    <span class="badge">Blog</span>
                 </a>
+
+                <!-- aiyou 个人主页 -->
+                <a href="https://aiyou945.github.io/" target="_blank" class="friend-item">
+                    <i class="fas fa-globe"></i>
+                    <span>aiyou</span>
+                    <span class="badge">主页</span>
+                </a>
+
+                <!-- aiyou 抖音（新增） -->
                 <a href="https://www.douyin.com/user/MS4wLjABAAAAxbTchQvWHmpTa9nbrFrzohg3Q_IVz80h9wACgrKRZs0?from_tab_name=main&is_search=0&list_name=follow&nt=0" target="_blank" class="friend-item">
                     <i class="fab fa-tiktok"></i>
                     <span>aiyou</span>
@@ -493,7 +528,7 @@
                 <span>页面开发中 · 持续迭代</span>
             </div>
             <span class="build-tag">
-                <i class="fas fa-code-branch"></i> v2.0 · 2026
+                <i class="fas fa-code-branch"></i> 文案及设计:&lt;呆头机哥&gt;; 代码:Deepseek
             </span>
         </div>
 
