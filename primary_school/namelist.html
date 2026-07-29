@@ -22,7 +22,7 @@
     <!-- ====== 3. Font Awesome ====== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- ====== 已移除 Favicon（原） ====== -->
+    <!-- ====== 已移除 Favicon ====== -->
 
     <style>
         /* ---------- 完整深色主题样式 ---------- */
@@ -138,6 +138,11 @@
             background: #222;
             border-color: #888;
             color: #fff;
+        }
+        .stats .pdf-btn.disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            cursor: not-allowed;
         }
         .logout-btn {
             background: transparent;
@@ -424,7 +429,7 @@
         }
 
         // ============================================================
-        //  渲染页面
+        //  渲染页面（修改：使用签名链接）
         // ============================================================
         function renderPage(data) {
             const cls = data.class;
@@ -444,7 +449,10 @@
             // 统计栏
             const male = active.filter(s => s.gender === '男').length;
             const female = active.filter(s => s.gender === '女').length;
-            const pdfUrl = cls.pdf_url || '#';
+            // ★★★ 使用签名链接 ★★★
+            const pdfUrl = data.pdf_signed_url || '#';
+            const pdfDisabled = !data.pdf_signed_url ? 'disabled' : '';
+
             document.getElementById('stats').innerHTML = `
                 <div class="stat-item"><span class="num gold">${active.length}</span> 在校</div>
                 <div class="stat-divider">·</div>
@@ -454,7 +462,7 @@
                 <div class="stat-divider">·</div>
                 <div class="stat-item"><span class="num" style="color:#666;">${left.length}</span> 已离开</div>
                 <div style="flex:1; text-align:right; display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap;">
-                    <a href="${pdfUrl}" target="_blank" class="pdf-btn"><i class="fas fa-file-pdf"></i> 下载 PDF</a>
+                    <a href="${pdfUrl}" target="_blank" class="pdf-btn ${pdfDisabled}"><i class="fas fa-file-pdf"></i> 下载 PDF</a>
                     <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 退出</button>
                 </div>
             `;
@@ -473,7 +481,7 @@
         }
 
         // ============================================================
-        //  卡片构建
+        //  卡片构建（无改动）
         // ============================================================
         function buildCard(student, isLeave) {
             const idStr = student.id || '--';
@@ -511,7 +519,7 @@
         }
 
         // ============================================================
-        //  主流程：加载数据
+        //  主流程：加载数据（修改：增加签名链接获取）
         // ============================================================
         async function loadData() {
             document.getElementById('header').innerHTML = `
@@ -525,6 +533,7 @@
             }
 
             try {
+                // 1. 获取班级和学生数据
                 const { data, error } = await supabaseClient.rpc('get_my_class_data', {
                     p_user_id: user.id
                 });
@@ -540,6 +549,22 @@
                     return;
                 }
 
+                // ============================================================
+                // ★★★ 新增：获取签名 PDF 链接 ★★★
+                // ============================================================
+                const { data: pdfSignedUrl, error: pdfError } = await supabaseClient.rpc('get_signed_pdf_url', {
+                    p_user_id: user.id
+                });
+
+                if (pdfError) {
+                    console.error('获取PDF签名链接失败:', pdfError);
+                    data.pdf_signed_url = null; // 设为空，按钮将置灰
+                } else {
+                    data.pdf_signed_url = pdfSignedUrl; // 签名链接
+                }
+                // ============================================================
+
+                // 2. 渲染页面（将包含签名链接的 data 传入）
                 renderPage(data);
 
             } catch (err) {
