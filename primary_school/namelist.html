@@ -22,8 +22,6 @@
     <!-- ====== 3. Font Awesome ====== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- ====== 已移除 Favicon ====== -->
-
     <style>
         /* ---------- 完整深色主题样式 ---------- */
         * {
@@ -320,6 +318,24 @@
             font-size: 12px;
             color: #333;
         }
+        .footer .home-btn {
+            display: inline-block;
+            margin-top: 12px;
+            background: transparent;
+            border: 1px solid #446666;
+            color: #88aaaa;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .footer .home-btn:hover {
+            background: #1a2a2a;
+            border-color: #88aaaa;
+            color: #ccffff;
+        }
 
         /* 加载动画 */
         .loading {
@@ -372,6 +388,10 @@
                 font-size: 12px;
                 padding: 4px 12px;
             }
+            .footer .home-btn {
+                font-size: 12px;
+                padding: 4px 12px;
+            }
         }
         @media (min-width: 641px) and (max-width: 900px) {
             .grid {
@@ -398,6 +418,8 @@
         <div class="footer">
             <div id="footerText">同学录</div>
             <div class="note">部分内容由 AI 辅助整理 · 保留原始记录</div>
+            <!-- ★★★ 新增返回主页按钮 ★★★ -->
+            <a href="index.html" class="home-btn"><i class="fas fa-home"></i> 返回主页</a>
         </div>
     </div>
 
@@ -429,7 +451,7 @@
         }
 
         // ============================================================
-        //  渲染页面（修改：使用签名链接）
+        //  渲染页面（使用签名链接）
         // ============================================================
         function renderPage(data) {
             const cls = data.class;
@@ -449,7 +471,6 @@
             // 统计栏
             const male = active.filter(s => s.gender === '男').length;
             const female = active.filter(s => s.gender === '女').length;
-            // ★★★ 使用签名链接 ★★★
             const pdfUrl = data.pdf_signed_url || '#';
             const pdfDisabled = !data.pdf_signed_url ? 'disabled' : '';
 
@@ -481,7 +502,7 @@
         }
 
         // ============================================================
-        //  卡片构建（无改动）
+        //  卡片构建
         // ============================================================
         function buildCard(student, isLeave) {
             const idStr = student.id || '--';
@@ -519,7 +540,7 @@
         }
 
         // ============================================================
-        //  主流程：加载数据（修改：增加签名链接获取）
+        //  主流程：加载数据（增加签名链接获取）
         // ============================================================
         async function loadData() {
             document.getElementById('header').innerHTML = `
@@ -549,22 +570,19 @@
                     return;
                 }
 
-                // ============================================================
-                // ★★★ 新增：获取签名 PDF 链接 ★★★
-                // ============================================================
+                // 2. 获取签名 PDF 链接
                 const { data: pdfSignedUrl, error: pdfError } = await supabaseClient.rpc('get_signed_pdf_url', {
                     p_user_id: user.id
                 });
 
                 if (pdfError) {
                     console.error('获取PDF签名链接失败:', pdfError);
-                    data.pdf_signed_url = null; // 设为空，按钮将置灰
+                    data.pdf_signed_url = null;
                 } else {
-                    data.pdf_signed_url = pdfSignedUrl; // 签名链接
+                    data.pdf_signed_url = pdfSignedUrl;
                 }
-                // ============================================================
 
-                // 2. 渲染页面（将包含签名链接的 data 传入）
+                // 3. 渲染页面
                 renderPage(data);
 
             } catch (err) {
