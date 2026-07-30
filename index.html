@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>呆头机哥 · 个人主页</title>
-    <!-- 引入 Font Awesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
         /* ===== 全局重置 & 字体 ===== */
@@ -25,7 +24,6 @@
             margin: 0;
         }
 
-        /* ===== 主卡片容器 ===== */
         .profile-card {
             max-width: 820px;
             width: 100%;
@@ -34,22 +32,17 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 48px;
             padding: 3rem 2.8rem;
-            box-shadow:
-                0 30px 60px -20px rgba(0, 0, 0, 0.25),
-                0 10px 30px -10px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.25), 0 10px 30px -10px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(255, 245, 220, 0.5);
             transition: transform 0.3s ease, box-shadow 0.4s ease;
         }
 
         .profile-card:hover {
             transform: translateY(-4px);
-            box-shadow:
-                0 40px 80px -24px rgba(0, 0, 0, 0.30),
-                0 12px 36px -12px rgba(0, 0, 0, 0.10);
+            box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.30), 0 12px 36px -12px rgba(0, 0, 0, 0.10);
         }
 
-        /* ===== 头部区域（已移除头像） ===== */
+        /* ===== 头部 ===== */
         .header {
             display: flex;
             align-items: center;
@@ -75,7 +68,6 @@
             display: inline-block;
         }
 
-        /* 括号内的名字样式 */
         .title-group h1 .name-tag {
             font-weight: 400;
             font-size: 1.2rem;
@@ -100,7 +92,6 @@
             font-size: 0.85rem;
         }
 
-        /* ===== 分割装饰 ===== */
         .divider {
             width: 100%;
             height: 2px;
@@ -110,7 +101,6 @@
             opacity: 0.6;
         }
 
-        /* ===== 区块标题 ===== */
         .section-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -178,7 +168,6 @@
             transform: scale(1.05);
         }
 
-        /* 各平台图标配色 */
         .icon-douyin {
             background: linear-gradient(135deg, #000000, #1a1a1a);
         }
@@ -188,7 +177,6 @@
         .icon-qq {
             background: linear-gradient(135deg, #2b82d9, #1a6bc4);
         }
-        /* 洛谷改为绿色渐变 + 奖杯图标 */
         .icon-luogu {
             background: linear-gradient(135deg, #2e8b57, #1f6d3a);
         }
@@ -226,7 +214,6 @@
             font-size: 0.6rem;
         }
 
-        /* ===== QQ 特殊展示 ===== */
         .qq-display {
             background: rgba(255, 248, 235, 0.6);
             border-radius: 18px;
@@ -254,7 +241,6 @@
             font-size: 1.1rem;
         }
 
-        /* ===== 朋友专区 ===== */
         .friends-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -302,7 +288,7 @@
             text-align: center;
         }
 
-        /* ===== 底部状态 ===== */
+        /* ===== 底部 ===== */
         .footer-note {
             margin-top: 2.8rem;
             padding-top: 1.8rem;
@@ -332,15 +318,8 @@
         }
 
         @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(0.8);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
         }
 
         .footer-note .build-tag {
@@ -357,40 +336,57 @@
             margin-right: 4px;
         }
 
+        /* ===== 小学同学录按钮 ===== */
+        .extra-link {
+            text-align: center;
+            margin-top: 1.8rem;
+        }
+
+        .extra-link a {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            background: linear-gradient(135deg, #d4a373, #b8895e);
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(180, 130, 80, 0.3);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .extra-link a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(180, 130, 80, 0.4);
+            background: linear-gradient(135deg, #dba87a, #c49264);
+        }
+
         /* ===== 响应式 ===== */
         @media (max-width: 640px) {
             .profile-card {
                 padding: 2rem 1.5rem;
                 border-radius: 32px;
             }
-
             .header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.8rem;
             }
-
             .title-group h1 {
                 font-size: 1.7rem;
             }
-
             .title-group h1 .name-tag {
                 font-size: 1rem;
             }
-
-            .link-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .link-grid,
             .friends-grid {
                 grid-template-columns: 1fr;
             }
-
             .footer-note {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
             .qq-display {
                 width: 100%;
                 justify-content: center;
@@ -426,7 +422,6 @@
             </div>
         </div>
 
-        <!-- ===== 分割线 ===== -->
         <div class="divider"></div>
 
         <!-- ===== 联系方式 ===== -->
@@ -436,7 +431,6 @@
         </div>
 
         <div class="link-grid">
-            <!-- 抖音 -->
             <a href="https://www.douyin.com/user/MS4wLjABAAAAQDRg2xZAeSjGAjvvLnd3Q92q_8Fy7d4i3xjXVqW8WJQ?from_tab_name=main" target="_blank" class="link-card">
                 <span class="icon-wrap icon-douyin"><i class="fab fa-tiktok"></i></span>
                 <span class="link-text">
@@ -444,8 +438,6 @@
                     <span class="hint"><i class="fas fa-arrow-right"></i> 短视频 & 日常</span>
                 </span>
             </a>
-
-            <!-- CSDN -->
             <a href="https://blog.csdn.net/2503_93879663" target="_blank" class="link-card">
                 <span class="icon-wrap icon-csdn"><i class="fas fa-blog"></i></span>
                 <span class="link-text">
@@ -453,8 +445,6 @@
                     <span class="hint"><i class="fas fa-arrow-right"></i> 技术博客</span>
                 </span>
             </a>
-
-            <!-- QQ 展示（无链接） -->
             <div class="link-card" style="cursor: default; background: rgba(255,248,235,0.4);">
                 <span class="icon-wrap icon-qq"><i class="fab fa-qq"></i></span>
                 <span class="link-text">
@@ -462,8 +452,6 @@
                     <span class="hint"><i class="fas fa-phone"></i> 3665610192</span>
                 </span>
             </div>
-
-            <!-- 洛谷：改用奖杯图标 + 绿色背景 -->
             <a href="https://www.luogu.com.cn/team/106372/member" target="_blank" class="link-card">
                 <span class="icon-wrap icon-luogu"><i class="fas fa-trophy"></i></span>
                 <span class="link-text">
@@ -471,8 +459,6 @@
                     <span class="hint"><i class="fas fa-arrow-right"></i> 算法竞赛</span>
                 </span>
             </a>
-
-            <!-- Hydro -->
             <a href="https://hydro.ac/" target="_blank" class="link-card">
                 <span class="icon-wrap icon-hydro"><i class="fas fa-droplet"></i></span>
                 <span class="link-text">
@@ -482,7 +468,6 @@
             </a>
         </div>
 
-        <!-- QQ 数字醒目展示（额外） -->
         <div class="qq-display">
             <i class="fab fa-qq"></i>
             <span>QQ 直连：</span>
@@ -496,23 +481,17 @@
                 <i class="fas fa-users"></i>
                 <span>🤝 朋友的主页</span>
             </div>
-
             <div class="friends-grid">
-                <!-- piaoztsdy：改为博客链接 -->
                 <a href="https://www.piaoztsdy.cn/" target="_blank" class="friend-item">
                     <i class="fas fa-blog"></i>
                     <span>piaoztsdy</span>
                     <span class="badge">Blog</span>
                 </a>
-
-                <!-- aiyou 个人主页 -->
                 <a href="https://aiyou945.github.io/" target="_blank" class="friend-item">
                     <i class="fas fa-globe"></i>
                     <span>aiyou</span>
                     <span class="badge">主页</span>
                 </a>
-
-                <!-- aiyou 抖音（新增） -->
                 <a href="https://www.douyin.com/user/MS4wLjABAAAAxbTchQvWHmpTa9nbrFrzohg3Q_IVz80h9wACgrKRZs0?from_tab_name=main&is_search=0&list_name=follow&nt=0" target="_blank" class="friend-item">
                     <i class="fab fa-tiktok"></i>
                     <span>aiyou</span>
@@ -530,6 +509,11 @@
             <span class="build-tag">
                 <i class="fas fa-code-branch"></i> 文案及设计:&lt;呆头机哥&gt;; 代码:Deepseek
             </span>
+        </div>
+
+        <!-- ===== 小学同学录按钮 ===== -->
+        <div class="extra-link">
+            <a href="https://daitoujige.github.io/primary_school/index.html">📖 前往作者的小学同学录</a>
         </div>
 
     </div>
