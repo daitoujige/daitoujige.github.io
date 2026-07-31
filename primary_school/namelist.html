@@ -220,7 +220,7 @@
             if (student.nickname) tagsHTML += `<span class="tag nick"><i class="fas fa-tag"></i> ${student.nickname}</span>`;
             if (student.height) tagsHTML += `<span class="tag"><i class="fas fa-ruler"></i> ${student.height}</span>`;
             if (!isLeave) {
-                const roleKeywords = ['班长', '数学组长', '作者'];
+                const roleKeywords = ['班长', '数学组长', '作者', '英语组长'];
                 for (const kw of roleKeywords) {
                     if (student.desc && student.desc.includes(kw)) {
                         tagsHTML += `<span class="tag role"><i class="fas fa-award"></i> ${kw}</span>`;
